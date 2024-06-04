@@ -2,8 +2,8 @@ name: network_internet_checker
 description: "A flutter plugin that notifies users when there is no internet connection changes "
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-homepage: https://github.com/Ogunleye-Similoluwa/network_connectivity.git
+publish_to:
+homepage: https://github.com/Ogunleye-Similoluwa/network_internet-checker.git
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43

@@ -1,7 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'NetworkWidget.dart';
-
+import 'network_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,13 +20,21 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         body: ConnectivityWidget(
-          noInternetText: const Text("Check your internet and try again", ),
+          noInternetText: const Text("Check your internet and try again"),
           addIcon: false,
           loadingColor: Colors.brown,
-          textButton: Text("Try Again"),
+          textButton: const Text("Try Again"),
           onButtonPressed: () {
-            print("Check your internet and try again"); },
-          child: Center(child: const Text("Working",style: TextStyle(fontSize: 20),)),
+            if (kDebugMode) {
+              print("Check your internet and try again");
+            }
+          },
+          child: const Center(
+            child: Text(
+              "Working",
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
         ),
       ),
     );
