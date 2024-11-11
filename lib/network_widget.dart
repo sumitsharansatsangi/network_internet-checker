@@ -30,10 +30,10 @@ class ConnectivityWidget extends StatefulWidget {
       required this.onButtonPressed});
 
   @override
-  _ConnectivityWidgetState createState() => _ConnectivityWidgetState();
+  ConnectivityWidgetState createState() => ConnectivityWidgetState();
 }
 
-class _ConnectivityWidgetState extends State<ConnectivityWidget> {
+class ConnectivityWidgetState extends State<ConnectivityWidget> {
   List<ConnectivityResult> _connectionStatus = [ConnectivityResult.none];
   final Connectivity _connectivity = Connectivity();
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
@@ -149,38 +149,40 @@ class _Screen2State extends State<Screen2> {
       body: SizedBox(
         width: size.width,
         height: size.height,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 100),
-
-            ///  Uncomment and add your image asset or any widget you want to use for your connection
-            widget.addIcon
-                ? widget.icon!
-                : Image.asset("assets/no_network.jpg"),
-            const SizedBox(height: 50),
-            widget.noInternetText,
-            const SizedBox(height: 30),
-            isLoading
-                ? Loading(
-                    loadingColor: widget.loadingColor,
-                  )
-                : TextButton(
-                    onPressed: () async {
-                      widget.onButtonPressed!();
-                      setState(() {
-                        isLoading = true;
-                      });
-                      await widget.initConnectivity();
-                      Future.delayed(Duration(seconds: 5), () {
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(height: 100),
+          
+              ///  Uncomment and add your image asset or any widget you want to use for your connection
+              widget.addIcon
+                  ? widget.icon!
+                  : Image.asset("assets/no_network.jpg"),
+              const SizedBox(height: 50),
+              widget.noInternetText,
+              const SizedBox(height: 30),
+              isLoading
+                  ? Loading(
+                      loadingColor: widget.loadingColor,
+                    )
+                  : TextButton(
+                      onPressed: () async {
+                        widget.onButtonPressed!();
                         setState(() {
-                          isLoading = false;
+                          isLoading = true;
                         });
-                      });
-                    },
-                    child: widget.textButton,
-                  ),
-          ],
+                        await widget.initConnectivity();
+                        Future.delayed(Duration(seconds: 5), () {
+                          setState(() {
+                            isLoading = false;
+                          });
+                        });
+                      },
+                      child: widget.textButton,
+                    ),
+            ],
+          ),
         ),
       ),
     );
