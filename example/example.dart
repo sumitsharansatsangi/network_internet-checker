@@ -8,11 +8,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: ConnectivityWidget(
-        child: HomeScreen(),
         textButton: Text('Retry'),
         noInternetText: Text('No Internet Connection. Please try again.'),
         addIcon: true,
@@ -20,12 +21,15 @@ class MyApp extends StatelessWidget {
         onButtonPressed: () {
           // Your onButtonPressed logic here
         },
+        child: HomeScreen(),
       ),
     );
   }
 }
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
